@@ -25,7 +25,6 @@ function emitLiteral(tokens, str, start, i) {
 }
 
 function tokenize(str) {
-debugger;
     const len = str.length;
     let i = 0;
     let tokens = [];

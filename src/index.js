@@ -19,15 +19,48 @@
 
 import { execSync } from 'child_process';
 import fs from 'fs';
+import path from 'path';
 
 import Conditions from './Conditions.js';
 import NodeCompat from './NodeCompat.js';
 
+// Search the parents to find the main package.json that contains the name and version
+// number, and ignore any auxillary ones found on the way.
 function findPkgJson() {
+    let pkgpath = process.cwd();
+    while (true) {
+        while (pkgpath.length > 1 && !fs.existsSync(path.join(pkgpath, "package.json"))) {
+            pkgpath = path.join(path.dirname(pkgpath));
+        }
+
+        const finalpath = path.join(pkgpath, "package.json");
+        if (!fs.existsSync(finalpath)) {
+            console.log("Error: could not find the package.json file in any parent directory");
+            process.exit(1);
+        }
+
+        const pkg = JSON.parse(fs.readFileSync(finalpath, "utf-8"));
+        if (typeof(pkg.name) !== 'undefined' && typeof(pkg.version) !== 'undefined') {
+           // this is a main package.json, so return it. Change dir to where this package.json
+           // is so that the install will apply to that one
+           process.chdir(pkgpath);
+           return pkg;
+        }
+
+        // else, this is an auxillary package.json, so continue to look in the parents again
+        pkgpath = path.join(path.dirname(pkgpath));
+    }
+}
+
+if (process.argv.length > 2 && process.argv[2].toLowerCase() === "--help") {
+    console.log("Usage: conditional-install [--help]");
+    console.log("Conditionally install js package dependencies.");
+    console.log("See https://github.com/ilib-js/conditionalInstall for more details");
+    process.exit(0);
 }
 
 try {
-    const pkg = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
+    const pkg = findPkgJson();
 
     // no config? Then there is nothing to do!
     if (!pkg.conditionalDependencies || Object.keys(pkg.conditionalDependencies).length < 1) {
@@ -45,5 +78,6 @@ try {
         }
     });
 } catch (e) {
-    console.err("Could not read the package.json file.");
+    console.err("Could not read the package.json file." + e);
+    process.exit(1);
 }
