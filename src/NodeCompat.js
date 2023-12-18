@@ -63,7 +63,7 @@ class NodeCompat {
     }
 
     /**
-     * Download version information about the version.
+     * Process information about the version.
      *
      * @param {string} version version of node to check
      * @returns {Promise} promise to load the file
@@ -72,6 +72,7 @@ class NodeCompat {
      */
     async processVersionInfo(version, result) {
         // does this version of node support that ECMAScript version?
+        // Only put true if more than 99% of features are supported.
         this.esVersions = {};
         Object.keys(result).
             filter(key => !key.startsWith('_')).

@@ -11,7 +11,7 @@ var settings = {
     moduleDirectories: ['src', 'node_modules']
 };
 
-// for node 12 and below
+// for node 15 and below
 if (semver.lte(process.versions.node, 'v16.0.0')) {
     settings.transform = {
         "\\.[jt]sx?$": ["babel-jest", {

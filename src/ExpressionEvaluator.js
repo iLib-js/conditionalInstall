@@ -67,6 +67,7 @@ function nodeValue(value) {
     };
 }
 
+/* convert a term in the expression to a value */
 function termDelegate(term) {
     let node = nodeValue(term);
 

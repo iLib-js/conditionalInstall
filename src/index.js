@@ -35,7 +35,7 @@ try {
     }
 
     const nc = new NodeCompat();
-    nc.getVersionInfo("12.0.0").then(() => {
+    nc.getVersionInfo().then(() => {
         const conditions = new Conditions(pkg.conditionalDependencies, nc);
         const packages = conditions.getInstallInstructions();
         if (packages.length) {

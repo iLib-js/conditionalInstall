@@ -1,5 +1,5 @@
 /*
- * Condition.js - represent a conditional installation instruction
+ * Conditions.js - represent a conditional installation instruction
  *
  * Copyright © 2023 JEDLSoft
  *
