@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "main": "./lib/index.js",
     "module": "./src/index.js",
+    "bin": {
+        "conditional-install": "./conditional-install.js"
+    },
     "exports": {
         ".": {
             "import": "./src/index.js",
@@ -35,6 +38,7 @@
     "files": [
         "src",
         "lib",
+        "conditional-install.js",
         "docs",
         "README.md",
         "LICENSE"
