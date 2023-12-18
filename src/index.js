@@ -1,4 +1,3 @@
-#!/usr/bin/env node 
 /*
  * index.js - implement conditional package installation
  *

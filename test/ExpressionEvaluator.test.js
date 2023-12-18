@@ -19,12 +19,14 @@
 
 import ExpressionEvaluator from "../src/ExpressionEvaluator.js";
 import NodeCompat from "../src/NodeCompat.js";
+import fs from 'fs';
 
 const nc = new NodeCompat();
-await nc.getVersionInfo("12.0.0");
+const compatConfig = JSON.parse(fs.readFileSync("./test/12.0.0.json", "utf-8"));
+nc.processVersionInfo("12.0.0", compatConfig);
 
 describe("testing the expression evaluator object", () => {
-    test("that the constructor works okay", () => {
+    test("that the constructor works okay", async () => {
         expect.assertions(1);
         const ev = new ExpressionEvaluator(nc);
         expect(ev).toBeTruthy();
@@ -34,35 +36,35 @@ describe("testing the expression evaluator object", () => {
         expect.assertions(2);
         const ev = new ExpressionEvaluator(nc);
         expect(ev).toBeTruthy();
-        expect(ev.evaluate("process.config.variables.libdir = lib")).toBe(true);
+        expect(ev.evaluate("process.config.variables.node_target_type = executable")).toBe(true);
     });
 
     test("that it can evaluate a simple expression with a process variable negative", () => {
         expect.assertions(2);
         const ev = new ExpressionEvaluator(nc);
         expect(ev).toBeTruthy();
-        expect(ev.evaluate("process.config.variables.libdir = bar")).toBe(false);
+        expect(ev.evaluate("process.config.variables.node_target_type = foo")).toBe(false);
     });
 
     test("that it can evaluate a simple expression with a process variable with a space in the term", () => {
         expect.assertions(2);
         const ev = new ExpressionEvaluator(nc);
         expect(ev).toBeTruthy();
-        expect(ev.evaluate("process.config.variables.libdir = lib lab")).toBe(false);
+        expect(ev.evaluate("process.config.variables.node_target_type = lib lab")).toBe(false);
     });
 
     test("that it can evaluate a simple expression with not equal", () => {
         expect.assertions(2);
         const ev = new ExpressionEvaluator(nc);
         expect(ev).toBeTruthy();
-        expect(ev.evaluate("process.config.variables.libdir != foo")).toBe(true);
+        expect(ev.evaluate("process.config.variables.node_target_type != foo")).toBe(true);
     });
 
     test("that it can evaluate a simple expression with not equal negative", () => {
         expect.assertions(2);
         const ev = new ExpressionEvaluator(nc);
         expect(ev).toBeTruthy();
-        expect(ev.evaluate("process.config.variables.libdir != lib")).toBe(false);
+        expect(ev.evaluate("process.config.variables.node_target_type != executable")).toBe(false);
     });
 
     test("that it can evaluate a simple expression with greater than", () => {

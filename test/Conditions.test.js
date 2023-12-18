@@ -19,9 +19,11 @@
 
 import Conditions from "../src/Conditions.js";
 import NodeCompat from "../src/NodeCompat.js";
+import fs from 'fs';
 
 const nc = new NodeCompat();
-await nc.getVersionInfo("12.0.0");
+const compatConfig = JSON.parse(fs.readFileSync("./test/12.0.0.json", "utf-8"));
+nc.processVersionInfo("12.0.0", compatConfig);
 
 describe("testing the conditions processor", () => {
     test("that an empty conditions config works", () => {

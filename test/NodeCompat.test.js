@@ -18,6 +18,7 @@
  */
 
 import NodeCompat from "../src/NodeCompat.js";
+import fs from 'fs';
 
 describe("testing the node compatibility check object", () => {
     test("that the constructor works okay", () => {
@@ -37,6 +38,16 @@ describe("testing the node compatibility check object", () => {
         expect(() => {
             nc.supportsEsVersion("ES2015")
         }).toThrow();
+    });
+
+    test("make sure it can load a local version of the compatibility data", () => {
+        expect.assertions(3);
+
+        const nc = new NodeCompat();
+        nc.processVersionInfo("12.0.0", JSON.parse(fs.readFileSync("./test/12.0.0.json", "utf-8")));
+        expect(nc.init).toBeTruthy();
+        expect(nc.supportsFeature("Iterator.prototype.map")).toBeFalsy();
+        expect(nc.supportsFeature("DataView.prototype.getBigInt64")).toBeTruthy();
     });
 
     test("make sure it can load a version of the compatibility data", () => {

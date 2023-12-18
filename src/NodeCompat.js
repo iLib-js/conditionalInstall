@@ -59,6 +59,18 @@ class NodeCompat {
         const response = await fetch(url);
         const result = await response.json();
 
+        this.processVersionInfo(version, result);
+    }
+
+    /**
+     * Download version information about the version.
+     *
+     * @param {string} version version of node to check
+     * @returns {Promise} promise to load the file
+     * @accept {boolean} success
+     * @reject {boolean} failure to load
+     */
+    async processVersionInfo(version, result) {
         // does this version of node support that ECMAScript version?
         this.esVersions = {};
         Object.keys(result).

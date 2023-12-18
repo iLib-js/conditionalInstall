@@ -44,7 +44,7 @@
         "url": "git@github.com:iLib-js/conditionalInstall.git"
     },
     "scripts": {
-        "build": "npm run build:prod",
+        "build": "npm-run-all build:prod build:pkg",
         "build:prod": "grunt babel --mode=prod",
         "build:dev": "grunt babel --mode=dev",
         "build:pkg": "echo '{\"type\": \"commonjs\"}' > lib/package.json",
@@ -57,7 +57,8 @@
         "debug:web": "LANG=en_US.UTF8 node --experimental-vm-modules node_modules/.bin/karma start --reporters dots",
         "clean": "git clean -f -d src test; rm -rf lib",
         "doc": "mkdir -p docs ; jsdoc2md -c jsdoc.json --separators --source src/* -m table > docs/ilib-localedata.md",
-        "doc:html": "jsdoc -c jsdoc.json"
+        "doc:html": "jsdoc -c jsdoc.json",
+        "test:install": "node conditional-install.js"
     },
     "devDependencies": {
         "@babel/core": "^7.23.5",
