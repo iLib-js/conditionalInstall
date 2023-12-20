@@ -57,12 +57,13 @@
         "test:cli": "LANG=en_US.UTF8 npm run build:dev ; node --experimental-vm-modules node_modules/.bin/jest --env=node",
         "test:watch": "LANG=en_US.UTF8 node --experimental-vm-modules node_modules/.bin/jest --watchAll",
         "test:all": "npm-run-all test:cli",
+        "test:install": "node conditional-install.js",
         "debug": "npm run build:dev ; node --experimental-vm-modules --inspect-brk node_modules/.bin/jest -i",
         "debug:web": "LANG=en_US.UTF8 node --experimental-vm-modules node_modules/.bin/karma start --reporters dots",
         "clean": "git clean -f -d src test; rm -rf lib",
         "doc": "mkdir -p docs ; jsdoc2md -c jsdoc.json --separators --source src/* -m table > docs/conditionalInstall.md",
         "doc:html": "jsdoc -c jsdoc.json",
-        "test:install": "node conditional-install.js"
+        "postinstall": "npm-run-all build test:install"
     },
     "devDependencies": {
         "@babel/core": "^7.23.5",
