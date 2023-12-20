@@ -69,7 +69,7 @@ Conditional Expressions
 ----------------------
 
 The expressions are built on the hard work of
-(node-compat-table)[https://github.com/williamkapke/node-compat-table].
+[node-compat-table](https://github.com/williamkapke/node-compat-table).
 
 The core of an expression is a test. There are multiple things that can
 be tested:
@@ -150,9 +150,9 @@ Example of a conditional expression using more complex syntax:
 See Also
 --------
 
-- Check out the (node.green)[https://node.green/] site for all of the features that can be tested against as well
+- Check out the [node.green](https://node.green/) site for all of the features that can be tested against as well
   as a fascinating view of what versions of node support what features.
-- Check out (compat-table)[https://github.com/compat-table/compat-table] for the raw data, including JS support
+- Check out [compat-table](https://github.com/compat-table/compat-table) for the raw data, including JS support
   in browsers as well as node.
 - [Semver](https://github.com/npm/node-semver) can compare version numbers semantically.
 
