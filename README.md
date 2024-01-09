@@ -147,6 +147,35 @@ Example of a conditional expression using more complex syntax:
     }
 ```
 
+Conditional Dev Dependencies
+--------
+
+If you put "conditional-install" into the postinstall script, both npm and yarn will run the
+conditional installation whether you are doing `npm install` locally in your cloned git repo, or
+including your package into another package from the npm repository. In some cases, you only want
+to do conditional installation when running locally. To do that, put "conditional-install" into
+the "prepare" script instead:
+
+```json
+{
+    "name": "mypackage",
+    "scripts": {
+        "prepare": "conditional-install"
+    },
+    "devDependencies": {
+        "conditional-install": "^1.0.0"
+    },
+    "conditionalDependencies": {
+        "process.version >= 14.0.0": {
+            "jest": "^29.0.0"
+        },
+        "process.version < 14.0.0": {
+            "jest": "^26.0.0"
+        }
+    }
+}
+```
+
 See Also
 --------
 
