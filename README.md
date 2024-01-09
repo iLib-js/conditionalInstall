@@ -33,7 +33,7 @@ Here is what the package.json would look like:
 {
     "name": "mypackage",
     "scripts": {
-        "postinstall": "node conditional-install"
+        "postinstall": "conditional-install"
     },
     "devDependencies": {
         "conditional-install": "^1.0.0"
