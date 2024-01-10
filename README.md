@@ -33,17 +33,17 @@ Here is what the package.json would look like:
 {
     "name": "mypackage",
     "scripts": {
-        "postinstall": "node conditional-install"
+        "postinstall": "conditional-install"
     },
-    "devDependencies": {
+    "dependencies": {
         "conditional-install": "^1.0.0"
     },
     "conditionalDependencies": {
         "process.version >= 14.0.0": {
-            "jest": "^29.0.0"
+            "example-package": "^29.0.0"
         },
         "process.version < 14.0.0": {
-            "jest": "^26.0.0"
+            "example-package": "^26.0.0"
         }
     }
 }
@@ -147,6 +147,37 @@ Example of a conditional expression using more complex syntax:
     }
 ```
 
+Conditional Dev Dependencies
+--------
+
+If you put "conditional-install" into the postinstall script, both npm and yarn will run the
+conditional installation whether you are doing `npm install` locally in your cloned git repo, or
+including your package into another package from the npm repository.
+
+In some cases, you only want to do conditional installation when running locally during development.
+To do that, put "conditional-install" into the "prepare" script instead and include "conditional-install"
+in your `devDependencies` instead:
+
+```json
+{
+    "name": "mypackage",
+    "scripts": {
+        "prepare": "conditional-install"
+    },
+    "devDependencies": {
+        "conditional-install": "^1.0.0"
+    },
+    "conditionalDependencies": {
+        "process.version >= 14.0.0": {
+            "jest": "^29.0.0"
+        },
+        "process.version < 14.0.0": {
+            "jest": "^26.0.0"
+        }
+    }
+}
+```
+
 See Also
 --------
 
@@ -158,7 +189,7 @@ See Also
 
 ## License
 
-Copyright © 2023, JEDLSoft
+Copyright © 2023-2024, JEDLSoft
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -174,6 +205,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ## Release Notes
+
+### v1.0.1
+
+- fixed a broken "postinstall" script in the package.json
+- updated documentation
 
 ### v1.0.0
 
