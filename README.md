@@ -35,15 +35,15 @@ Here is what the package.json would look like:
     "scripts": {
         "postinstall": "conditional-install"
     },
-    "devDependencies": {
+    "dependencies": {
         "conditional-install": "^1.0.0"
     },
     "conditionalDependencies": {
         "process.version >= 14.0.0": {
-            "jest": "^29.0.0"
+            "example-package": "^29.0.0"
         },
         "process.version < 14.0.0": {
-            "jest": "^26.0.0"
+            "example-package": "^26.0.0"
         }
     }
 }
@@ -152,9 +152,11 @@ Conditional Dev Dependencies
 
 If you put "conditional-install" into the postinstall script, both npm and yarn will run the
 conditional installation whether you are doing `npm install` locally in your cloned git repo, or
-including your package into another package from the npm repository. In some cases, you only want
-to do conditional installation when running locally. To do that, put "conditional-install" into
-the "prepare" script instead:
+including your package into another package from the npm repository.
+
+In some cases, you only want to do conditional installation when running locally during development.
+To do that, put "conditional-install" into the "prepare" script instead and include "conditional-install"
+in your `devDependencies` instead:
 
 ```json
 {
