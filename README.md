@@ -206,6 +206,12 @@ limitations under the License.
 
 ## Release Notes
 
+### v1.0.2
+
+- now while installing the conditional dependencies, it ignores any automatically run scripts you may have set up
+  in your package.json . The original run of npm install will run those scripts properly have the conditional
+  install is complete.
+
 ### v1.0.1
 
 - fixed a broken "postinstall" script in the package.json
