@@ -49,9 +49,6 @@ module.exports = function(grunt) {
                         "corejs": 3
                     }
                 ]],
-                plugins: [
-                    "add-module-exports"
-                ],
                 compact: !debug,
                 minified: !debug
             },

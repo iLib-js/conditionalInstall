@@ -34,7 +34,7 @@ describe("testing the node compatibility check object", () => {
         const nc = new NodeCompat();
         expect(nc.init).toBeFalsy();
         expect(() => {
-            nc.supportsFeature("Iterator.prototype.map")
+            nc.supportsFeature("Iterator.prototype.map");
         }).toThrow();
         expect(() => {
             nc.supportsEsVersion("ES2015")
