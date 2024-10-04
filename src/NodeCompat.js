@@ -34,6 +34,8 @@ const ECMAScriptAliases = {
     "ES12": "ES2021",
     "ES13": "ES2022",
     "ES14": "ES2023",
+    "ES15": "ES2024",
+    "ES16": "ES2025",
     "ESM": "ES2015",
     "CJS": "ES2009"
 };

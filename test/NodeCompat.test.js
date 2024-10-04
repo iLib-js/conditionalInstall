@@ -19,6 +19,7 @@
 
 import NodeCompat from "../src/NodeCompat.js";
 import fs from 'fs';
+import semver from 'semver';
 
 describe("testing the node compatibility check object", () => {
     test("that the constructor works okay", () => {
@@ -54,9 +55,14 @@ describe("testing the node compatibility check object", () => {
         expect.assertions(3);
 
         const nc = new NodeCompat();
+        // this gets its information from the current version of node that we are running on
         return nc.getVersionInfo().then(() => {
             expect(nc.init).toBeTruthy();
-            expect(nc.supportsFeature("Iterator.prototype.map")).toBeFalsy();
+            if (semver.lt(process.versions.node, "v22.0.0")) {
+                expect(nc.supportsFeature("Iterator.prototype.map")).toBeFalsy();
+            } else {
+                expect(nc.supportsFeature("Iterator.prototype.map")).toBeTruthy();
+            }
             expect(nc.supportsFeature("DataView.prototype.getBigInt64")).toBeTruthy();
         });
     });
