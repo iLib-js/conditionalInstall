@@ -211,6 +211,7 @@ limitations under the License.
 - now while installing the conditional dependencies, it ignores any automatically run scripts you may have set up
   in your package.json . The original run of npm install will run those scripts properly once the conditional
   install is complete. This prevents a recursive install loop.
+- tests now run properly on node 22
 
 ### v1.0.1
 
