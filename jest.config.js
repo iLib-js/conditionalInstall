@@ -31,9 +31,6 @@ if (semver.lte(process.versions.node, 'v16.0.0')) {
                 "/node_modules/"
             ],
             plugins: [
-                "@babel/plugin-proposal-optional-chaining",
-                "transform-import-meta",
-                "add-module-exports",
                 ["module-resolver", {
                     "root": "test",
                     // map the src dir to the lib dir so we can
