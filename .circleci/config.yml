@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4
+
 jobs:
   test:
     parameters:
@@ -9,6 +13,7 @@ jobs:
       - image: << parameters.docker_image >>
     steps:
       - checkout
+      - browser-tools/install-browser-tools
       - run:
           name: Setup
           command: |
@@ -37,4 +42,6 @@ workflows:
           docker_image: cimg/node:18.9-browsers
       - test:
           docker_image: cimg/node:20.9-browsers
+      - test:
+          docker_image: cimg/node:22-browsers
       - test

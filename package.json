@@ -47,6 +47,10 @@
         "type": "git",
         "url": "git@github.com:iLib-js/conditionalInstall.git"
     },
+    "engines": {
+        "node": ">=10.0.0",
+        "npm": ">=6.0.0"
+    },
     "scripts": {
         "build": "npm-run-all build:prod build:pkg",
         "build:prod": "grunt babel --mode=prod",
