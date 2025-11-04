@@ -43,5 +43,5 @@ workflows:
       - test:
           docker_image: cimg/node:20.9-browsers
       - test:
-          docker_image: cimg/node:22-browsers
+          docker_image: cimg/node:22.21.1-browsers
       - test
