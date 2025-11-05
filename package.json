@@ -1,6 +1,6 @@
 {
     "name": "conditional-install",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": "./lib/index.js",
     "module": "./src/index.js",
     "bin": {
@@ -47,6 +47,10 @@
         "type": "git",
         "url": "git@github.com:iLib-js/conditionalInstall.git"
     },
+    "engines": {
+        "node": ">=10.0.0",
+        "npm": ">=6.0.0"
+    },
     "scripts": {
         "build": "npm-run-all build:prod build:pkg",
         "build:prod": "grunt babel --mode=prod",
@@ -59,34 +63,33 @@
         "test:all": "npm-run-all test:cli",
         "test:install": "node conditional-install.js",
         "debug": "npm run build:dev ; node --experimental-vm-modules --inspect-brk node_modules/.bin/jest -i",
-        "debug:web": "LANG=en_US.UTF8 node --experimental-vm-modules node_modules/.bin/karma start --reporters dots",
         "clean": "git clean -f -d src test; rm -rf lib",
         "doc": "mkdir -p docs ; jsdoc2md -c jsdoc.json --separators --source src/* -m table > docs/conditionalInstall.md",
         "doc:html": "jsdoc -c jsdoc.json",
         "prepare": "npm-run-all build:dev test:install"
     },
     "devDependencies": {
-        "@babel/core": "^7.23.5",
-        "@babel/plugin-transform-modules-commonjs": "^7.23.3",
-        "@babel/preset-env": "^7.23.5",
-        "@babel/runtime": "^7.23.5",
+        "@babel/core": "^7.28.5",
+        "@babel/plugin-transform-modules-commonjs": "^7.27.1",
+        "@babel/preset-env": "^7.28.5",
+        "@babel/runtime": "^7.28.4",
         "docdash": "^2.0.2",
         "grunt": "^1.6.1",
         "grunt-babel": "^8.0.0",
-        "grunt-cli": "^1.4.3",
+        "grunt-cli": "^1.5.0",
         "grunt-contrib-clean": "^2.0.1",
         "grunt-contrib-jshint": "^3.2.0",
         "grunt-contrib-uglify": "^5.2.2",
-        "jsdoc": "^4.0.2",
-        "jsdoc-to-markdown": "^8.0.0",
+        "jsdoc": "^4.0.5",
+        "jsdoc-to-markdown": "^8.0.3",
         "load-grunt-tasks": "^5.1.0",
         "npm-run-all": "^4.1.5"
     },
     "dependencies": {
-        "core-js": "^3.0.0",
-        "expressionparser": "^1.1.5",
-        "node-fetch": "^2.0.0",
-        "semver": "^7.5.4"
+        "core-js": "^3.46.0",
+        "expressionparser": "^1.1.9",
+        "node-fetch": "^2.7.0",
+        "semver": "^7.7.3"
     },
     "conditionalDependencies": {
         "process.versions.node < 14.0.0": {
