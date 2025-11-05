@@ -206,6 +206,10 @@ limitations under the License.
 
 ## Release Notes
 
+### v1.0.3
+
+- update dependencies
+
 ### v1.0.2
 
 - now while installing the conditional dependencies, it ignores any automatically run scripts you may have set up
